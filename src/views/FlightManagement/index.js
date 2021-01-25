@@ -119,6 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let placeholder;
   let list;
   let isDraggingStarted = false;
+  let mouseUpCheck;
 
   // The current position of mouse relative to the dragging element
   let x = 0;
@@ -199,6 +200,9 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const mouseDownHandler = (e) => {
+    if (!mouseUpCheck) {
+      mouseUpCheck = true;
+    }
     draggingColumnIndex = [].slice
       .call(table.querySelectorAll("th"))
       .indexOf(e.target);
@@ -213,6 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const mouseMoveHandler = (e) => {
+    if (!mouseUpCheck) return;
     if (!isDraggingStarted) {
       isDraggingStarted = true;
 
@@ -274,6 +279,9 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const mouseUpHandler = () => {
+    if (mouseUpCheck) {
+      mouseUpCheck = false;
+    }
     // // Remove the placeholder
     if (!placeholder || !placeholder.parentNode) return;
     placeholder && placeholder.parentNode.removeChild(placeholder);
@@ -366,6 +374,7 @@ export default function FlightManagement() {
       return compare;
     };
 
+    //sort by
     const onSortFlightsBy = () => {
       let fields = [];
       let field;
