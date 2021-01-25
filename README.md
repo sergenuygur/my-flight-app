@@ -1,7 +1,7 @@
 ## Latest Versions of Environment Tools
 
-1. `npm` -> 6.14.8
-2. `node` -> 14.15.0
+1. `npm` -> 6.14.10
+2. `node` -> 14.15.4
 
 ## Installing Dependencies After Cloning This Project
 
