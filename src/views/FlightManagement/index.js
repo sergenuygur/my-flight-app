@@ -327,6 +327,7 @@ const style = {
   },
   number: {
     fontSize: 13,
+    paddingLeft: 2,
   },
 };
 
@@ -477,7 +478,7 @@ export default function FlightManagement() {
                       if (i.name === item.value) {
                         return (
                           <Fragment key={i.name}>
-                            {i.icon}{" "}
+                            {i.icon}
                             <span style={style.number}>{index + 1 + "."}</span>
                           </Fragment>
                         );
