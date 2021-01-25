@@ -296,13 +296,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const cells = [].slice.call(row.querySelectorAll('th, td'));
       draggingColumnIndex > endColumnIndex
         ? cells[endColumnIndex].parentNode.insertBefore(
-            cells[draggingColumnIndex],
-            cells[endColumnIndex]
-          )
+          cells[draggingColumnIndex],
+          cells[endColumnIndex]
+        )
         : cells[endColumnIndex].parentNode.insertBefore(
-            cells[draggingColumnIndex],
-            cells[endColumnIndex].nextSibling
-          );
+          cells[draggingColumnIndex],
+          cells[endColumnIndex].nextSibling
+        );
     });
 
     // Bring back the table
@@ -441,18 +441,18 @@ export default function FlightManagement() {
                           .reverse;
                         columnList[findIndex].icon = !columnList[findIndex]
                           .reverse ? (
-                          <img
-                            src={IconUpward}
-                            alt="IconUpward"
-                            style={style.icon}
-                          />
-                        ) : (
-                          <img
-                            src={IconDownward}
-                            alt="IconDownward"
-                            style={style.icon}
-                          />
-                        );
+                            <img
+                              src={IconUpward}
+                              alt="IconUpward"
+                              style={style.icon}
+                            />
+                          ) : (
+                            <img
+                              src={IconDownward}
+                              alt="IconDownward"
+                              style={style.icon}
+                            />
+                          );
                       } else {
                         columnList.push(defaultColumn);
                       }
@@ -461,21 +461,22 @@ export default function FlightManagement() {
                   }}
                   onDoubleClick={() => {
                     if (selectedColumnList.length === 0) return;
-                    let filterColumnList = selectedColumnList.filter(
-                      (i) => i.name !== item.value
-                    );
-                    setSelectedColumnList(filterColumnList);
                     if (selectedColumnList[0].name === item.value) {
                       setSelectedColumnList([]);
                       setSortedFlights([...flightsData]);
-                    } else return;
+                    } else {
+                      let filterColumnList = selectedColumnList.filter(
+                        (i) => i.name !== item.value
+                      );
+                      setSelectedColumnList(filterColumnList);
+                    };
                   }}
                 >
                   {item.header}
                   {columnFindIndex(selectedColumnList, item.value) !== -1
                     ? selectedColumnList[
-                        columnFindIndex(selectedColumnList, item.value)
-                      ].icon
+                      columnFindIndex(selectedColumnList, item.value)
+                    ].icon
                     : null}
                   {columnFindIndex(selectedColumnList, item.value) !== -1 ? (
                     <span style={style.number}>
