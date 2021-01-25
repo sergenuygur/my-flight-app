@@ -33,7 +33,6 @@ const flightsData = [
     flightNumber: "TK7227",
     airline: "Turkish Airlines",
     destination: "Gaziantep",
-    scheduled: getNormalizedDateString("2020-10-11"),
     scheduledDate: "2020-10-11",
   },
   {
@@ -41,7 +40,6 @@ const flightsData = [
     flightNumber: "PC4545",
     airline: "Pegasus",
     destination: "Gaziantep",
-    scheduled: getNormalizedDateString("2018-05-10"),
     scheduledDate: "2018-05-10",
   },
   {
@@ -49,7 +47,6 @@ const flightsData = [
     flightNumber: "XQ2424",
     airline: "SunExpress",
     destination: "İstanbul",
-    scheduled: getNormalizedDateString("2021-03-05"),
     scheduledDate: "2021-03-05",
   },
   {
@@ -57,7 +54,6 @@ const flightsData = [
     flightNumber: "TK7227",
     airline: "Turkish Airlines",
     destination: "Ankara",
-    scheduled: getNormalizedDateString("2019-09-06"),
     scheduledDate: "2019-09-06",
   },
   {
@@ -65,7 +61,6 @@ const flightsData = [
     flightNumber: "PC4342",
     airline: "Pegasus",
     destination: "İzmir",
-    scheduled: getNormalizedDateString("2020-03-24"),
     scheduledDate: "2020-03-24",
   },
   {
@@ -73,7 +68,6 @@ const flightsData = [
     flightNumber: "XQ9596",
     airline: "SunExpress",
     destination: "Gaziantep",
-    scheduled: getNormalizedDateString("2020-03-25"),
     scheduledDate: "2020-03-25",
   },
   {
@@ -81,7 +75,6 @@ const flightsData = [
     flightNumber: "TK7227",
     airline: "Turkish Airlines",
     destination: "Gaziantep",
-    scheduled: getNormalizedDateString("2020-02-28"),
     scheduledDate: "2020-02-28",
   },
   {
@@ -89,7 +82,6 @@ const flightsData = [
     flightNumber: "PC6343",
     airline: "Pegasus",
     destination: "Gaziantep",
-    scheduled: getNormalizedDateString("2020-02-15"),
     scheduledDate: "2020-02-15",
   },
   {
@@ -97,7 +89,6 @@ const flightsData = [
     flightNumber: "XQ3242",
     airline: "SunExpress",
     destination: "Gaziantep",
-    scheduled: getNormalizedDateString("2020-03-12"),
     scheduledDate: "2020-03-12",
   },
   {
@@ -105,7 +96,6 @@ const flightsData = [
     flightNumber: "PC6786",
     airline: "Pegasus",
     destination: "Gaziantep",
-    scheduled: getNormalizedDateString("2020-03-26"),
     scheduledDate: "2020-03-26",
   },
 ];
@@ -503,7 +493,7 @@ export default function FlightManagement() {
                 <td>{row.flightNumber}</td>
                 <td>{row.airline}</td>
                 <td>{row.destination}</td>
-                <td>{row.scheduled}</td>
+                <td>{getNormalizedDateString(row.scheduledDate)}</td>
               </tr>
             ))}
           </tbody>
