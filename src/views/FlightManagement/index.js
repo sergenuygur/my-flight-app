@@ -1,118 +1,118 @@
-import { useState, useEffect } from 'react';
-import './style.css';
-import IconUpward from 'assets/icons/arrowUpward.svg';
-import IconDownward from 'assets/icons/arrowDownward.svg';
-import { getNormalizedDateString } from 'helper';
+import { Fragment, useState, useEffect } from "react";
+import "./style.css";
+import IconUpward from "assets/icons/arrowUpward.svg";
+import IconDownward from "assets/icons/arrowDownward.svg";
+import { getNormalizedDateString } from "helper";
 
 const columns = [
   {
     id: 1,
-    header: 'Flight Number',
-    value: 'flightNumber',
+    header: "Flight Number",
+    value: "flightNumber",
   },
   {
     id: 2,
-    header: 'Airline',
-    value: 'airline',
+    header: "Airline",
+    value: "airline",
   },
   {
     id: 3,
-    header: 'Destination',
-    value: 'destination',
+    header: "Destination",
+    value: "destination",
   },
   {
     id: 4,
-    header: 'Scheduled Date',
-    value: 'scheduledDate',
+    header: "Scheduled Date",
+    value: "scheduledDate",
   },
 ];
 
 const flightsData = [
   {
     id: 1,
-    flightNumber: 'TK7227',
-    airline: 'Turkish Airlines',
-    destination: 'Gaziantep',
-    scheduled: getNormalizedDateString('2020-10-11'),
-    scheduledDate: '2020-10-11',
+    flightNumber: "TK7227",
+    airline: "Turkish Airlines",
+    destination: "Gaziantep",
+    scheduled: getNormalizedDateString("2020-10-11"),
+    scheduledDate: "2020-10-11",
   },
   {
     id: 2,
-    flightNumber: 'PC4545',
-    airline: 'Pegasus',
-    destination: 'Gaziantep',
-    scheduled: getNormalizedDateString('2018-05-10'),
-    scheduledDate: '2018-05-10',
+    flightNumber: "PC4545",
+    airline: "Pegasus",
+    destination: "Gaziantep",
+    scheduled: getNormalizedDateString("2018-05-10"),
+    scheduledDate: "2018-05-10",
   },
   {
     id: 3,
-    flightNumber: 'XQ2424',
-    airline: 'SunExpress',
-    destination: 'İstanbul',
-    scheduled: getNormalizedDateString('2021-03-05'),
-    scheduledDate: '2021-03-05',
+    flightNumber: "XQ2424",
+    airline: "SunExpress",
+    destination: "İstanbul",
+    scheduled: getNormalizedDateString("2021-03-05"),
+    scheduledDate: "2021-03-05",
   },
   {
     id: 4,
-    flightNumber: 'TK7227',
-    airline: 'Turkish Airlines',
-    destination: 'Ankara',
-    scheduled: getNormalizedDateString('2019-09-06'),
-    scheduledDate: '2019-09-06',
+    flightNumber: "TK7227",
+    airline: "Turkish Airlines",
+    destination: "Ankara",
+    scheduled: getNormalizedDateString("2019-09-06"),
+    scheduledDate: "2019-09-06",
   },
   {
     id: 5,
-    flightNumber: 'PC4342',
-    airline: 'Pegasus',
-    destination: 'İzmir',
-    scheduled: getNormalizedDateString('2020-03-24'),
-    scheduledDate: '2020-03-24',
+    flightNumber: "PC4342",
+    airline: "Pegasus",
+    destination: "İzmir",
+    scheduled: getNormalizedDateString("2020-03-24"),
+    scheduledDate: "2020-03-24",
   },
   {
     id: 6,
-    flightNumber: 'XQ9596',
-    airline: 'SunExpress',
-    destination: 'Gaziantep',
-    scheduled: getNormalizedDateString('2020-03-25'),
-    scheduledDate: '2020-03-25',
+    flightNumber: "XQ9596",
+    airline: "SunExpress",
+    destination: "Gaziantep",
+    scheduled: getNormalizedDateString("2020-03-25"),
+    scheduledDate: "2020-03-25",
   },
   {
     id: 7,
-    flightNumber: 'TK7227',
-    airline: 'Turkish Airlines',
-    destination: 'Gaziantep',
-    scheduled: getNormalizedDateString('2020-02-28'),
-    scheduledDate: '2020-02-28',
+    flightNumber: "TK7227",
+    airline: "Turkish Airlines",
+    destination: "Gaziantep",
+    scheduled: getNormalizedDateString("2020-02-28"),
+    scheduledDate: "2020-02-28",
   },
   {
     id: 8,
-    flightNumber: 'PC6343',
-    airline: 'Pegasus',
-    destination: 'Gaziantep',
-    scheduled: getNormalizedDateString('2020-02-15'),
-    scheduledDate: '2020-02-15',
+    flightNumber: "PC6343",
+    airline: "Pegasus",
+    destination: "Gaziantep",
+    scheduled: getNormalizedDateString("2020-02-15"),
+    scheduledDate: "2020-02-15",
   },
   {
     id: 9,
-    flightNumber: 'XQ3242',
-    airline: 'SunExpress',
-    destination: 'Gaziantep',
-    scheduled: getNormalizedDateString('2020-03-12'),
-    scheduledDate: '2020-03-12',
+    flightNumber: "XQ3242",
+    airline: "SunExpress",
+    destination: "Gaziantep",
+    scheduled: getNormalizedDateString("2020-03-12"),
+    scheduledDate: "2020-03-12",
   },
   {
     id: 10,
-    flightNumber: 'PC6786',
-    airline: 'Pegasus',
-    destination: 'Gaziantep',
-    scheduled: getNormalizedDateString('2020-03-26'),
-    scheduledDate: '2020-03-26',
+    flightNumber: "PC6786",
+    airline: "Pegasus",
+    destination: "Gaziantep",
+    scheduled: getNormalizedDateString("2020-03-26"),
+    scheduledDate: "2020-03-26",
   },
 ];
 
 //to drag and drop
-document.addEventListener('DOMContentLoaded', () => {
-  const table = document.getElementById('table');
+document.addEventListener("DOMContentLoaded", () => {
+  const table = document.getElementById("table");
 
   let draggingEle;
   let draggingColumnIndex;
@@ -148,20 +148,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const cloneTable = () => {
     const rect = table.getBoundingClientRect();
 
-    list = document.createElement('div');
-    list.classList.add('clone-list');
-    list.style.position = 'absolute';
+    list = document.createElement("div");
+    list.classList.add("clone-list");
+    list.style.position = "absolute";
     list.style.left = `${rect.left}px`;
     list.style.top = `${rect.top}px`;
     table.parentNode.insertBefore(list, table);
 
     // Hide the original table
-    table.style.visibility = 'hidden';
+    table.style.visibility = "hidden";
 
     // Get all cells
-    const originalCells = [].slice.call(table.querySelectorAll('tbody td'));
+    const originalCells = [].slice.call(table.querySelectorAll("tbody td"));
 
-    const originalHeaderCells = [].slice.call(table.querySelectorAll('th'));
+    const originalHeaderCells = [].slice.call(table.querySelectorAll("th"));
     const numColumns = originalHeaderCells.length;
 
     // Loop through the header cells
@@ -169,16 +169,16 @@ document.addEventListener('DOMContentLoaded', () => {
       const width = parseInt(window.getComputedStyle(headerCell).width);
 
       // Create a new table from given row
-      const item = document.createElement('div');
-      item.classList.add('draggable');
+      const item = document.createElement("div");
+      item.classList.add("draggable");
 
-      const newTable = document.createElement('table');
-      newTable.setAttribute('class', 'clone-table');
+      const newTable = document.createElement("table");
+      newTable.setAttribute("class", "clone-table");
       newTable.style.width = `${width}px`;
 
       // Header
       const th = headerCell.cloneNode(true);
-      let newRow = document.createElement('tr');
+      let newRow = document.createElement("tr");
       newRow.appendChild(th);
       newTable.appendChild(newRow);
 
@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
       cells.forEach((cell) => {
         const newCell = cell.cloneNode(true);
         newCell.style.width = `${width}px`;
-        newRow = document.createElement('tr');
+        newRow = document.createElement("tr");
         newRow.appendChild(newCell);
         newTable.appendChild(newRow);
       });
@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const mouseDownHandler = (e) => {
     draggingColumnIndex = [].slice
-      .call(table.querySelectorAll('th'))
+      .call(table.querySelectorAll("th"))
       .indexOf(e.target);
 
     // Determine the mouse position
@@ -208,8 +208,8 @@ document.addEventListener('DOMContentLoaded', () => {
     y = e.clientY - e.target.offsetTop;
 
     // Attach the listeners to `document`
-    document.addEventListener('mousemove', mouseMoveHandler);
-    document.addEventListener('mouseup', mouseUpHandler);
+    document.addEventListener("mousemove", mouseMoveHandler);
+    document.addEventListener("mouseup", mouseUpHandler);
   };
 
   const mouseMoveHandler = (e) => {
@@ -220,20 +220,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
       draggingEle = [].slice.call(list.children)[draggingColumnIndex];
       if (!draggingEle) return;
-      draggingEle.classList.add('dragging');
+      draggingEle.classList.add("dragging");
 
       // Let the placeholder take the height of dragging element
       // So the next element won't move to the left or right
       // to fill the dragging element space
-      placeholder = document.createElement('div');
-      placeholder.classList.add('placeholder');
+      placeholder = document.createElement("div");
+      placeholder.classList.add("placeholder");
       draggingEle.parentNode.insertBefore(placeholder, draggingEle.nextSibling);
       placeholder.style.width = `${draggingEle.offsetWidth}px`;
     }
 
     if (!draggingEle) return;
     // Set position for dragging element
-    draggingEle.style.position = 'absolute';
+    draggingEle.style.position = "absolute";
     draggingEle.style.top = `${draggingEle.offsetTop + e.clientY - y}px`;
     draggingEle.style.left = `${draggingEle.offsetLeft + e.clientX - x}px`;
 
@@ -278,10 +278,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!placeholder || !placeholder.parentNode) return;
     placeholder && placeholder.parentNode.removeChild(placeholder);
 
-    draggingEle.classList.remove('dragging');
-    draggingEle.style.removeProperty('top');
-    draggingEle.style.removeProperty('left');
-    draggingEle.style.removeProperty('position');
+    draggingEle.classList.remove("dragging");
+    draggingEle.style.removeProperty("top");
+    draggingEle.style.removeProperty("left");
+    draggingEle.style.removeProperty("position");
 
     // Get the end index
     const endColumnIndex = [].slice.call(list.children).indexOf(draggingEle);
@@ -292,30 +292,30 @@ document.addEventListener('DOMContentLoaded', () => {
     list.parentNode.removeChild(list);
 
     // Move the dragged column to `endColumnIndex`
-    table.querySelectorAll('tr').forEach((row) => {
-      const cells = [].slice.call(row.querySelectorAll('th, td'));
+    table.querySelectorAll("tr").forEach((row) => {
+      const cells = [].slice.call(row.querySelectorAll("th, td"));
       draggingColumnIndex > endColumnIndex
         ? cells[endColumnIndex].parentNode.insertBefore(
-          cells[draggingColumnIndex],
-          cells[endColumnIndex]
-        )
+            cells[draggingColumnIndex],
+            cells[endColumnIndex]
+          )
         : cells[endColumnIndex].parentNode.insertBefore(
-          cells[draggingColumnIndex],
-          cells[endColumnIndex].nextSibling
-        );
+            cells[draggingColumnIndex],
+            cells[endColumnIndex].nextSibling
+          );
     });
 
     // Bring back the table
-    table.style.removeProperty('visibility');
+    table.style.removeProperty("visibility");
 
     // Remove the handlers of `mousemove` and `mouseup`
-    document.removeEventListener('mousemove', mouseMoveHandler);
-    document.removeEventListener('mouseup', mouseUpHandler);
+    document.removeEventListener("mousemove", mouseMoveHandler);
+    document.removeEventListener("mouseup", mouseUpHandler);
   };
 
-  table.querySelectorAll('th').forEach((headerCell) => {
-    headerCell.classList.add('draggable');
-    headerCell.addEventListener('mousedown', mouseDownHandler);
+  table.querySelectorAll("th").forEach((headerCell) => {
+    headerCell.classList.add("draggable");
+    headerCell.addEventListener("mousedown", mouseDownHandler);
   });
 });
 
@@ -327,7 +327,6 @@ const style = {
   },
   number: {
     fontSize: 13,
-    paddingLeft: 2,
   },
 };
 
@@ -341,7 +340,7 @@ export default function FlightManagement() {
     const isDate = (date) => {
       return (
         date &&
-        Object.prototype.toString.call(date) === '[object Date]' &&
+        Object.prototype.toString.call(date) === "[object Date]" &&
         !isNaN(date)
       );
     };
@@ -441,18 +440,18 @@ export default function FlightManagement() {
                           .reverse;
                         columnList[findIndex].icon = !columnList[findIndex]
                           .reverse ? (
-                            <img
-                              src={IconUpward}
-                              alt="IconUpward"
-                              style={style.icon}
-                            />
-                          ) : (
-                            <img
-                              src={IconDownward}
-                              alt="IconDownward"
-                              style={style.icon}
-                            />
-                          );
+                          <img
+                            src={IconUpward}
+                            alt="IconUpward"
+                            style={style.icon}
+                          />
+                        ) : (
+                          <img
+                            src={IconDownward}
+                            alt="IconDownward"
+                            style={style.icon}
+                          />
+                        );
                       } else {
                         columnList.push(defaultColumn);
                       }
@@ -469,22 +468,21 @@ export default function FlightManagement() {
                         (i) => i.name !== item.value
                       );
                       setSelectedColumnList(filterColumnList);
-                    };
+                    }
                   }}
                 >
                   {item.header}
-                  {columnFindIndex(selectedColumnList, item.value) !== -1
-                    ? selectedColumnList[
-                      columnFindIndex(selectedColumnList, item.value)
-                    ].icon
-                    : null}
-                  {columnFindIndex(selectedColumnList, item.value) !== -1 ? (
-                    <span style={style.number}>
-                      {columnFindIndex(selectedColumnList, item.value) +
-                        1 +
-                        '.'}
-                    </span>
-                  ) : null}
+                  {selectedColumnList?.length > 0 &&
+                    selectedColumnList.map((i, index) => {
+                      if (i.name === item.value) {
+                        return (
+                          <Fragment key={i.name}>
+                            {i.icon}{" "}
+                            <span style={style.number}>{index + 1 + "."}</span>
+                          </Fragment>
+                        );
+                      } else return "";
+                    })}
                 </th>
               ))}
             </tr>
