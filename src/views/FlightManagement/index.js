@@ -207,7 +207,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const mouseMoveHandler = (e) => {
-    if (!mouseUpCheck) return;
+    if (!mouseUpCheck || draggingColumnIndex === -1) return;
     if (!isDraggingStarted) {
       isDraggingStarted = true;
 
