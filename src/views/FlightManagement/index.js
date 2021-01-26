@@ -410,7 +410,7 @@ export default function FlightManagement() {
     let defaultColumn = {
       name: item.value,
       reverse: false,
-      icon: <img src={IconUpward} alt="IconUpward" style={style.icon} />,
+      icon: IconUpward,
     };
     let columnList = [...selectedColumnList];
     if (columnList.length === 0) {
@@ -419,11 +419,9 @@ export default function FlightManagement() {
       let findIndex = columnFindIndex(columnList, item.value);
       if (findIndex !== -1) {
         columnList[findIndex].reverse = !columnList[findIndex].reverse;
-        columnList[findIndex].icon = !columnList[findIndex].reverse ? (
-          <img src={IconUpward} alt="IconUpward" style={style.icon} />
-        ) : (
-          <img src={IconDownward} alt="IconDownward" style={style.icon} />
-        );
+        columnList[findIndex].icon = !columnList[findIndex].reverse
+          ? IconUpward
+          : IconDownward;
       } else {
         columnList.push(defaultColumn);
       }
@@ -440,48 +438,58 @@ export default function FlightManagement() {
         <table id="table" className="table">
           <thead>
             <tr>
-              {columns.map((item) => (
-                <th
-                  key={item.id}
-                  onClick={() => onSelectedColumns(item)}
-                  onDoubleClick={() => {
-                    if (selectedColumnList.length === 0) return;
-                    if (selectedColumnList[0].name === item.value) {
-                      setSelectedColumnList([]);
-                      setSortedFlights([...flightsData]);
-                    } else {
-                      let filterColumnList = selectedColumnList.filter(
-                        (i) => i.name !== item.value
-                      );
-                      setSelectedColumnList(filterColumnList);
-                    }
-                  }}
-                >
-                  {item.header}
-                  {selectedColumnList?.length > 0 &&
-                    selectedColumnList.map((i, index) => {
-                      if (i.name === item.value) {
-                        return (
-                          <Fragment key={i.name}>
-                            {i.icon}
-                            <span style={style.number}>{index + 1 + "."}</span>
-                          </Fragment>
+              {columns?.length > 0 &&
+                columns.map((item) => (
+                  <th
+                    key={item.id}
+                    onClick={() => onSelectedColumns(item)}
+                    onDoubleClick={() => {
+                      if (selectedColumnList.length === 0) return;
+                      if (selectedColumnList[0].name === item.value) {
+                        setSelectedColumnList([]);
+                        setSortedFlights([...flightsData]);
+                      } else {
+                        let filterColumnList = selectedColumnList.filter(
+                          (i) => i.name !== item.value
                         );
-                      } else return "";
-                    })}
-                </th>
-              ))}
+                        setSelectedColumnList(filterColumnList);
+                      }
+                    }}
+                  >
+                    {item.header}
+                    {selectedColumnList?.length > 0 &&
+                      selectedColumnList.map((i, index) => {
+                        if (i.name === item.value) {
+                          return (
+                            <Fragment key={i.name}>
+                              <span>
+                                <img
+                                  src={i.icon}
+                                  alt="sortIcons"
+                                  style={style.icon}
+                                />
+                              </span>
+                              <span style={style.number}>
+                                {index + 1 + "."}
+                              </span>
+                            </Fragment>
+                          );
+                        } else return "";
+                      })}
+                  </th>
+                ))}
             </tr>
           </thead>
           <tbody>
-            {sortedFlights.map((row) => (
-              <tr key={row.id}>
-                <td>{row.flightNumber}</td>
-                <td>{row.airline}</td>
-                <td>{row.destination}</td>
-                <td>{getNormalizedDateString(row.scheduled)}</td>
-              </tr>
-            ))}
+            {sortedFlights?.length > 0 &&
+              sortedFlights.map((row) => (
+                <tr key={row.id}>
+                  <td>{row.flightNumber}</td>
+                  <td>{row.airline}</td>
+                  <td>{row.destination}</td>
+                  <td>{getNormalizedDateString(row.scheduled)}</td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
