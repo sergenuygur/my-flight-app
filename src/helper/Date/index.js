@@ -1,4 +1,4 @@
 export const getNormalizedDateString = (date) => {
   let dateObj = new Date(date);
-  return dateObj.toLocaleDateString();
+  return dateObj.toString().substr(16, 5);
 };

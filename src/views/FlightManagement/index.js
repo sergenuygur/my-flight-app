@@ -22,8 +22,8 @@ const columns = [
   },
   {
     id: 4,
-    header: "Scheduled Date",
-    value: "scheduledDate",
+    header: "Scheduled",
+    value: "scheduled",
   },
 ];
 
@@ -33,70 +33,70 @@ const flightsData = [
     flightNumber: "TK7227",
     airline: "Turkish Airlines",
     destination: "Gaziantep",
-    scheduledDate: "2020-10-11",
+    scheduled: "2021-01-27 08:05",
   },
   {
     id: 2,
     flightNumber: "PC4545",
     airline: "Pegasus",
     destination: "Gaziantep",
-    scheduledDate: "2018-05-10",
+    scheduled: "2021-01-27 14:30",
   },
   {
     id: 3,
     flightNumber: "XQ2424",
     airline: "SunExpress",
     destination: "İstanbul",
-    scheduledDate: "2021-03-05",
+    scheduled: "2021-01-27 17:20",
   },
   {
     id: 4,
     flightNumber: "TK7227",
     airline: "Turkish Airlines",
     destination: "Ankara",
-    scheduledDate: "2019-09-06",
+    scheduled: "2021-01-27 11:10",
   },
   {
     id: 5,
     flightNumber: "PC4342",
     airline: "Pegasus",
     destination: "İzmir",
-    scheduledDate: "2020-03-24",
+    scheduled: "2021-01-27 21:30",
   },
   {
     id: 6,
     flightNumber: "XQ9596",
     airline: "SunExpress",
     destination: "Gaziantep",
-    scheduledDate: "2020-03-25",
+    scheduled: "2021-01-27 06:00",
   },
   {
     id: 7,
     flightNumber: "TK7227",
     airline: "Turkish Airlines",
     destination: "Gaziantep",
-    scheduledDate: "2020-02-28",
+    scheduled: "2021-01-27 22:00",
   },
   {
     id: 8,
     flightNumber: "PC6343",
     airline: "Pegasus",
     destination: "Gaziantep",
-    scheduledDate: "2020-02-15",
+    scheduled: "2021-01-27 12:20",
   },
   {
     id: 9,
     flightNumber: "XQ3242",
     airline: "SunExpress",
     destination: "Gaziantep",
-    scheduledDate: "2020-03-12",
+    scheduled: "2021-01-27 22:00",
   },
   {
     id: 10,
     flightNumber: "PC6786",
     airline: "Pegasus",
     destination: "Gaziantep",
-    scheduledDate: "2020-03-26",
+    scheduled: "2021-01-27 11:15",
   },
 ];
 
@@ -479,7 +479,7 @@ export default function FlightManagement() {
                 <td>{row.flightNumber}</td>
                 <td>{row.airline}</td>
                 <td>{row.destination}</td>
-                <td>{getNormalizedDateString(row.scheduledDate)}</td>
+                <td>{getNormalizedDateString(row.scheduled)}</td>
               </tr>
             ))}
           </tbody>
