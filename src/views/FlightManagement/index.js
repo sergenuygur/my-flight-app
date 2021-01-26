@@ -317,6 +317,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+const TAV_COLOR = "#1871B9";
+
 const style = {
   icon: {
     paddingLeft: 4,
@@ -326,6 +328,10 @@ const style = {
   number: {
     fontSize: 13,
     paddingLeft: 2,
+  },
+  tableHead: {
+    backgroundColor: TAV_COLOR,
+    color: "white",
   },
 };
 
@@ -441,6 +447,7 @@ export default function FlightManagement() {
               {columns?.length > 0 &&
                 columns.map((item) => (
                   <th
+                    style={style.tableHead}
                     key={item.id}
                     onClick={() => onSelectedColumns(item)}
                     onDoubleClick={() => {

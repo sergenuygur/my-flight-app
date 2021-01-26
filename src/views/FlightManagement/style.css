@@ -1,10 +1,10 @@
 .table {
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   border-collapse: collapse;
 }
 .table th,
 .table td {
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
 }
 .table th,
 .table td {
@@ -30,14 +30,11 @@
 .clone-table th,
 .clone-table td {
   border: 1px solid #ccc;
-  border-left: none;
-  border-top: none;
   padding: 0.5rem;
 }
 .dragging {
   background: #fff;
-  border-left: 1px solid #ccc;
-  border-top: 1px solid #ccc;
+  border: 3px solid #ccc;
   z-index: 999;
 }
 .container {
