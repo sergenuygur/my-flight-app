@@ -406,6 +406,31 @@ export default function FlightManagement() {
     return selectedColumnList.findIndex((i) => i.name === column);
   };
 
+  const onSelectedColumns = (item) => {
+    let defaultColumn = {
+      name: item.value,
+      reverse: false,
+      icon: <img src={IconUpward} alt="IconUpward" style={style.icon} />,
+    };
+    let columnList = [...selectedColumnList];
+    if (columnList.length === 0) {
+      columnList = [defaultColumn];
+    } else {
+      let findIndex = columnFindIndex(columnList, item.value);
+      if (findIndex !== -1) {
+        columnList[findIndex].reverse = !columnList[findIndex].reverse;
+        columnList[findIndex].icon = !columnList[findIndex].reverse ? (
+          <img src={IconUpward} alt="IconUpward" style={style.icon} />
+        ) : (
+          <img src={IconDownward} alt="IconDownward" style={style.icon} />
+        );
+      } else {
+        columnList.push(defaultColumn);
+      }
+    }
+    setSelectedColumnList(columnList);
+  };
+
   return (
     <div>
       <div className="container">
@@ -418,46 +443,7 @@ export default function FlightManagement() {
               {columns.map((item) => (
                 <th
                   key={item.id}
-                  onClick={() => {
-                    let defaultColumn = {
-                      name: item.value,
-                      reverse: false,
-                      icon: (
-                        <img
-                          src={IconUpward}
-                          alt="IconUpward"
-                          style={style.icon}
-                        />
-                      ),
-                    };
-                    let columnList = [...selectedColumnList];
-                    if (columnList.length === 0) {
-                      columnList = [defaultColumn];
-                    } else {
-                      let findIndex = columnFindIndex(columnList, item.value);
-                      if (findIndex !== -1) {
-                        columnList[findIndex].reverse = !columnList[findIndex]
-                          .reverse;
-                        columnList[findIndex].icon = !columnList[findIndex]
-                          .reverse ? (
-                          <img
-                            src={IconUpward}
-                            alt="IconUpward"
-                            style={style.icon}
-                          />
-                        ) : (
-                          <img
-                            src={IconDownward}
-                            alt="IconDownward"
-                            style={style.icon}
-                          />
-                        );
-                      } else {
-                        columnList.push(defaultColumn);
-                      }
-                    }
-                    setSelectedColumnList(columnList);
-                  }}
+                  onClick={() => onSelectedColumns(item)}
                   onDoubleClick={() => {
                     if (selectedColumnList.length === 0) return;
                     if (selectedColumnList[0].name === item.value) {
